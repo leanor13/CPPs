@@ -13,6 +13,11 @@ class Contact
 		std::string darkestSecret;
 
 	public:
+		Contact();
+		Contact(const Contact& other);
+		Contact& operator=(const Contact& other);
+		~Contact();
+
 		void setContactDetails();
 		void displayShortInfo(int index) const;
 		void displayFullInfo() const;
