@@ -11,8 +11,6 @@ int	main(int ac, char **av)
 			for (int j = 0; av[i][j] != '\0'; j ++)
 			{
 				std::cout << (char)toupper(av[i][j]);
-				if (av[i][j + 1] == '\0' && i != ac - 1)
-    				std::cout << ' ';
 			}
 		std::cout << std::endl;
 	}
