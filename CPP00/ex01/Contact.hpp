@@ -2,6 +2,8 @@
 #define CONTACT_HPP
 
 #include <string>
+#include <iostream>
+#include <iomanip>
 
 class Contact
 {
@@ -21,6 +23,11 @@ class Contact
 		void setContactDetails();
 		void displayShortInfo(int index) const;
 		void displayFullInfo() const;
+
+		std::string getFirstName() const;
+		std::string getLastName() const;
+		std::string getNickName() const;
+		std::string getPhoneNumber() const;
 };
 
 #endif
