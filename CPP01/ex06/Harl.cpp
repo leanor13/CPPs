@@ -18,14 +18,29 @@ void Harl::error() {
 }
 
 void Harl::complain(std::string level) {
-	// we create those arrays once and don't recreate them every time complain is called
     static const std::string levels[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
     static void (Harl::*funcPtr[4])() = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
 
+    int index = -1;
     for (int i = 0; i < 4; i++) {
         if (levels[i] == level) {
-            (this->*funcPtr[i])();
-            return;
+            index = i;
+            break;
         }
+    }
+
+    switch (index) {
+        case 0:
+            (this->*funcPtr[0])();
+        case 1:
+            (this->*funcPtr[1])();
+        case 2:
+            (this->*funcPtr[2])();
+        case 3:
+            (this->*funcPtr[3])();
+            break;
+        default:
+            std::cerr << "Unknown log level" << std::endl;
+            break;
     }
 }
