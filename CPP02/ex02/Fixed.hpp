@@ -28,6 +28,11 @@ public:
     Fixed operator++(int); // x++
     Fixed operator--(int); // x--
 
+	Fixed operator+(const Fixed &other) const;
+	Fixed operator-(const Fixed &other) const;
+	Fixed operator*(const Fixed &other) const;
+	Fixed operator/(const Fixed &other) const;
+
 
 	~Fixed();
 

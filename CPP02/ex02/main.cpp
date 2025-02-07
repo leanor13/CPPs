@@ -1,60 +1,99 @@
 #include <iostream>
-#include <limits>  // Для крайних значений
+#include <limits>
 #include "Fixed.hpp"
 
-int main() {
-    std::cout << "\n=== Tests from PDF ===" << std::endl;
+void testComparisons() {
+    std::cout << "\n=== Comparison Operators ===" << std::endl;
+    Fixed a(42);
+    Fixed b(42);
+    Fixed c(100);
+
+    std::cout << "a == b: " << (a == b) << std::endl;
+    std::cout << "a != c: " << (a != c) << std::endl;
+    std::cout << "a < c: " << (a < c) << std::endl;
+    std::cout << "c > a: " << (c > a) << std::endl;
+    std::cout << "a <= b: " << (a <= b) << std::endl;
+    std::cout << "c >= a: " << (c >= a) << std::endl;
+}
+
+void testArithmetic() {
+    std::cout << "\n=== Arithmetic Operators ===" << std::endl;
+    Fixed a(10);
+    Fixed b(2);
+
+    std::cout << "a + b = " << (a + b) << std::endl;
+    std::cout << "a - b = " << (a - b) << std::endl;
+    std::cout << "a * b = " << (a * b) << std::endl;
+    std::cout << "a / b = " << (a / b) << std::endl;
+}
+
+void testIncrementDecrement() {
+    std::cout << "\n=== Increment/Decrement Operators ===" << std::endl;
     Fixed a;
-    Fixed const b(10);
-    Fixed const c(42.42f);
-    Fixed const d(b);
-    a = Fixed(1234.4321f);
 
-    std::cout << "a is " << a << std::endl;
-    std::cout << "b is " << b << std::endl;
-    std::cout << "c is " << c << std::endl;
-    std::cout << "d is " << d << std::endl;
+    std::cout << "a = " << a << std::endl;
+    std::cout << "++a = " << ++a << std::endl;
+    std::cout << "a++ = " << a++ << std::endl;
+    std::cout << "a = " << a << std::endl;
+    std::cout << "--a = " << --a << std::endl;
+    std::cout << "a-- = " << a-- << std::endl;
+    std::cout << "a = " << a << std::endl;
+}
 
-    std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-    std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-    std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-    std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+void testMinMax() {
+    std::cout << "\n=== Min/Max Functions ===" << std::endl;
+    Fixed a(3.14f);
+    Fixed b(2.71f);
 
-    std::cout << "\n=== Additional Tests ===" << std::endl;
+    std::cout << "min(a, b) = " << Fixed::min(a, b) << std::endl;
+    std::cout << "max(a, b) = " << Fixed::max(a, b) << std::endl;
 
-    // 1. min and max values
-    Fixed maxInt(std::numeric_limits<int>::max());  // INT_MAX (8388607.99)
-    Fixed minInt(std::numeric_limits<int>::min());  // INT_MIN (-8388608)
-    Fixed maxFloat(std::numeric_limits<float>::max()); // FLT_MAX (8388607.99)
-    Fixed minFloat(std::numeric_limits<float>::min()); // FLT_MIN (very small value)
-    Fixed trueMinFloat(std::numeric_limits<float>::denorm_min()); // FLT_TRUE_MIN
-    Fixed negativeFloat(-1234.5678f);  // negative float
-    Fixed negativeMinFloat(-std::numeric_limits<float>::min()); // -FLT_MIN
-    Fixed negativeTrueMinFloat(-std::numeric_limits<float>::denorm_min()); // -FLT_TRUE_MIN
-    Fixed negativeMaxFloat(-std::numeric_limits<float>::max()); // -FLT_MAX
-
-
-    // 3. show results
-    std::cout << "INT_MAX = " << maxInt << std::endl;
-    std::cout << "INT_MIN = " << minInt << std::endl;
-    std::cout << "FLT_MAX = " << maxFloat << std::endl;
-    std::cout << "FLT_MIN = " << minFloat << std::endl;
-    std::cout << "FLT_TRUE_MIN = " << trueMinFloat << std::endl;
-    std::cout << "-FLT_MIN = " << negativeMinFloat << std::endl;
-    std::cout << "-FLT_TRUE_MIN = " << negativeTrueMinFloat << std::endl;
-    std::cout << "-FLT_MAX = " << negativeMaxFloat << std::endl;
+    const Fixed c(5.5f);
+    const Fixed d(10.1f);
     
-    std::cout << "Negative float = " << negativeFloat << std::endl;
+    std::cout << "min(c, d) = " << Fixed::min(c, d) << std::endl;
+    std::cout << "max(c, d) = " << Fixed::max(c, d) << std::endl;
+}
+
+void testEdgeCases() {
+    std::cout << "\n=== Edge Cases ===" << std::endl;
+
+    Fixed maxFixed(std::numeric_limits<int>::max()); // INT_MAX
+    Fixed minFixed(std::numeric_limits<int>::min()); // INT_MIN
+    Fixed zero(0);
+    Fixed one(1);
+
+    std::cout << "INT_MAX = " << maxFixed << std::endl;
+    std::cout << "INT_MIN = " << minFixed << std::endl;
+    std::cout << "zero = " << zero << std::endl;
     
+    std::cout << "maxFixed + one = " << (maxFixed + one) << std::endl;
+    std::cout << "minFixed - one = " << (minFixed - one) << std::endl;
 
-    std::cout << "\n=== toInt() Tests ===" << std::endl;
-    std::cout << "c.toInt() = " << c.toInt() << std::endl;
-    std::cout << "negativeFloat.toInt() = " << negativeFloat.toInt() << std::endl;
+    std::cout << "zero / zero (should error) = " << (zero / zero) << std::endl;
+    std::cout << "zero / one = " << (zero / one) << std::endl;
+    std::cout << "one / zero (should error) = " << (one / zero) << std::endl;
+}
 
-    std::cout << "\n=== Assignment Operator Test ===" << std::endl;
-    Fixed f;
-    f = c;
-    std::cout << "f = " << f << std::endl;
+int main(void) {
+    Fixed a;
+    Fixed const b(Fixed(5.05f) * Fixed(2));
+
+    std::cout << a << std::endl;
+    std::cout << ++a << std::endl;
+    std::cout << a << std::endl;
+    std::cout << a++ << std::endl;
+    std::cout << a << std::endl;
+
+    std::cout << b << std::endl;
+
+    std::cout << Fixed::max(a, b) << std::endl;
+
+    testComparisons();
+    testArithmetic();
+    testIncrementDecrement();
+    testMinMax();
+    testEdgeCases();
 
     return 0;
 }
