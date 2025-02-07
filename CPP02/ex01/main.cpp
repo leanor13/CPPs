@@ -1,5 +1,5 @@
 #include <iostream>
-#include <limits>  // Для крайних значений
+#include <limits>
 #include "Fixed.hpp"
 
 int main() {
@@ -43,7 +43,7 @@ int main() {
     std::cout << "-FLT_MIN = " << negativeMinFloat << std::endl;
     std::cout << "-FLT_TRUE_MIN = " << negativeTrueMinFloat << std::endl;
     std::cout << "-FLT_MAX = " << negativeMaxFloat << std::endl;
-    
+
     std::cout << "Negative float = " << negativeFloat << std::endl;
     
 
