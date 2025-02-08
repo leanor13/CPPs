@@ -4,8 +4,8 @@
 #include <iostream>
 
 class ClapTrap {
-
-private:
+// it has to be changed to protected from private, so child classes could have access to it
+protected:
 	std::string _name;
 	int	_hitPoints;
 	int	_energyPoints;
