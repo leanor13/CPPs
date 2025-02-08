@@ -6,8 +6,9 @@ const int			DEFAULT_HIT_POINTS = 100;
 const int			DEFAULT_ENERGY_POINTS = 50;
 const int			DEFAULT_ATTACK_DAMAGE = 20;
 
-ScavTrap::ScavTrap() : ClapTrap(DEFAULT_NAME)
+ScavTrap::ScavTrap() : ClapTrap()
 {
+	_name = DEFAULT_NAME;
 	_hitPoints = DEFAULT_HIT_POINTS;
 	_energyPoints = DEFAULT_ENERGY_POINTS;
 	_attackDamage = DEFAULT_ATTACK_DAMAGE;
@@ -21,10 +22,15 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
 	_energyPoints = DEFAULT_ENERGY_POINTS;
 	_attackDamage = DEFAULT_ATTACK_DAMAGE;
 
-	std::cout << "ScavTrap: constructor called with name: " << name << std::endl;
+	std::cout << "ScavTrap: Default constructor called with name: " << name << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other) {
+	_name = other._name;
+	_hitPoints = other._hitPoints;
+	_energyPoints = other._energyPoints;
+	_attackDamage = other._attackDamage;
+
 	std::cout << "ScavTrap " << _name << ": Copy constructor called" << std::endl;
 }
 
