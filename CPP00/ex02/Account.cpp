@@ -9,7 +9,7 @@ int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
 void Account::_displayTimestamp() {
-    std::time_t now = std::time(nullptr);
+    std::time_t now = std::time(NULL);
     std::tm *localTime = std::localtime(&now);
     std::cout << "[" << std::setfill('0') << std::setw(4) << (localTime->tm_year + 1900)
               << std::setw(2) << (localTime->tm_mon + 1)
