@@ -10,7 +10,7 @@ private:
 
 public:
     HumanB(std::string name);
-	// protection from getting nullptr as weapon
+	// protection from getting NULL as weapon
     void setWeapon(Weapon& newWeapon);
     void attack() const;
 };

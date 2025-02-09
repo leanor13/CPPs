@@ -10,7 +10,7 @@ int main() {
             horde[i].announce();
         }
         delete[] horde;
-		horde = nullptr;
+		horde = NULL;
     }
 
     std::cout << "\n== Test 2: Edge case (N = 1) ==" << std::endl;
@@ -19,7 +19,7 @@ int main() {
     if (horde) {
         horde[0].announce();
         delete[] horde;
-		horde = nullptr;
+		horde = NULL;
     }
 
     std::cout << "\n== Test 3: Invalid case (N = 0) ==" << std::endl;
