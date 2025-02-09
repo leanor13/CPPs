@@ -3,7 +3,7 @@
 #include <iostream>
 
 Cat::Cat() : Animal() {
-	_type = "Cat";
+	type = "Cat";
 	std::cout << "[Cat] Default constructor called" << std::endl;
 }
 

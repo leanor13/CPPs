@@ -2,19 +2,19 @@
 
 #include <iostream>
 
-Animal::Animal() : _type("Unknown") {
+Animal::Animal() : type("Unknown") {
 	std::cout << "[Animal] Default constructor called" << std::endl;
 }
 
 Animal::Animal(const Animal& other) {
 	std::cout << "[Animal] Copy constructor called" << std::endl;
-	_type = other._type;
+	type = other.type;
 }
 
 Animal& Animal::operator=(const Animal& other) {
 	if (this != &other) {
 		std::cout << "[Animal] Assignment operator called" << std::endl;
-		_type = other._type;
+		type = other.type;
 	}
 	return *this;
 }
@@ -28,5 +28,5 @@ void Animal::makeSound() const {
 }
 
 std::string Animal::getType() const {
-	return _type;
+	return type;
 }

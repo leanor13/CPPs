@@ -3,7 +3,7 @@
 #include <iostream>
 
 Dog::Dog() : Animal() {
-	_type = "Dog";
+	type = "Dog";
 	std::cout << "[Dog] Default constructor called" << std::endl;
 }
 
