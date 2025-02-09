@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     }
 
     std::string filename = argv[1];
-    std::ofstream outFile(filename + ".replace");
+    std::ofstream outFile((filename + ".replace").c_str());
     if (!outFile) {
         std::cerr << "Error: Cannot create output file" << std::endl;
         return 1;
