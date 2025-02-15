@@ -45,7 +45,7 @@ void Contact::displayShortInfo(int index) const {
               << std::setw(10) << (nickName.length() > 10 ? nickName.substr(0, 9) + "." : nickName) << std::endl;
 }
 
-bool isValidPhoneNumber(const std::string& number) {
+static bool isValidPhoneNumber(const std::string& number) {
     if (number.empty()) return false;
 
     for (size_t i = 0; i < number.length(); i++) {
@@ -54,24 +54,35 @@ bool isValidPhoneNumber(const std::string& number) {
     return true;
 }
 
+void Contact::checkEOF() {
+    if (std::cin.eof()) {
+        std::cerr << "\n*End of input detected. Exiting...*\n";
+        exit(1);
+    }
+}
+
 void Contact::setContactDetails() {
-    std::cout << "Enter first name: ";
-    while (std::getline(std::cin, firstName) && firstName.empty())
-        std::cout << "First name cannot be empty. Try again: ";
+    const std::string fieldNames[] = {
+        "first name", "last name", "nickname", "phone number", "darkest secret"
+    };
+    std::string* fields[] = {
+        &firstName, &lastName, &nickName, &phoneNumber, &darkestSecret
+    };
 
-    std::cout << "Enter last name: ";
-    while (std::getline(std::cin, lastName) && lastName.empty())
-        std::cout << "Last name cannot be empty. Try again: ";
-
-    std::cout << "Enter nickname: ";
-    while (std::getline(std::cin, nickName) && nickName.empty())
-        std::cout << "Nickname cannot be empty. Try again: ";
-
-    std::cout << "Enter phone number: ";
-    while (std::getline(std::cin, phoneNumber) && !isValidPhoneNumber(phoneNumber))
-        std::cout << "Phone number cannot be empty and should contain only digits. Try again: ";
-
-    std::cout << "Enter darkest secret: ";
-    while (std::getline(std::cin, darkestSecret) && darkestSecret.empty())
-        std::cout << "Darkest secret cannot be empty. Try again: ";
+    for (int i = 0; i < 5; i++) {
+        std::cout << "Enter " << fieldNames[i] << ": ";
+        while (true) {
+            if (!std::getline(std::cin, *fields[i])) {
+                checkEOF();
+            }
+            if (i == 3) {
+                if (isValidPhoneNumber(*fields[i])) break;
+                std::cout << "Invalid phone number! Must contain only digits (0-9). Try again: ";
+            } else {
+                if (!fields[i]->empty()) break;
+                std::cout << fieldNames[i] << " cannot be empty. Try again: ";
+            }
+        }
+    }
+    std::cout << "Contact added successfully!\n";
 }

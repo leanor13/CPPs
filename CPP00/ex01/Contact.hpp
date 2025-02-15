@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <cctype>
+#include <cstdlib>
 
 class Contact
 {
@@ -13,6 +15,8 @@ class Contact
 		std::string nickName;
 		std::string phoneNumber;
 		std::string darkestSecret;
+
+		void checkEOF();
 
 	public:
 		Contact();

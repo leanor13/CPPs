@@ -36,7 +36,10 @@ void PhoneBook::searchContacts() const {
     // Ask for an index
     std::cout << "Enter the index of the contact to display: ";
     std::string input;
-    std::getline(std::cin, input);
+    if (!std::getline(std::cin, input)) { 
+        std::cerr << "\n*End of input detected. Exiting...*\n";
+        exit(1);
+    }
 
     // Validate input (must be a number and within range)
     if (input.length() != 1 || input[0] < '0' || input[0] >= '0' + count) {
