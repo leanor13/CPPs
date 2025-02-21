@@ -17,13 +17,16 @@ Character::Character(const Character& other) : name(other.name) {
 Character& Character::operator=(const Character& other) {
     if (this != &other) {
         name = other.name;
+
         for (int i = 0; i < 4; i++) {
+            AMateria* newMateria = other.inventory[i] ? other.inventory[i]->clone() : nullptr;
             delete inventory[i];
-            inventory[i] = (other.inventory[i] ? other.inventory[i]->clone() : NULL);
+            inventory[i] = newMateria;
         }
     }
     return *this;
 }
+
 
 Character::~Character() {
     for (int i = 0; i < 4; i++)
