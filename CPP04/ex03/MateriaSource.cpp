@@ -41,8 +41,15 @@ void MateriaSource::learnMateria(AMateria* m) {
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
     for (int i = 0; i < 4; i++) {
-        if (learned[i] && learned[i]->getType() == type)
-            return learned[i]->clone();
+        if (learned[i] && learned[i]->getType() == type) {
+            AMateria* cloned = learned[i]->clone();
+            if (!cloned) {
+                std::cout << "[MateriaSource] Failed to clone Materia: " << type << std::endl;
+                return NULL;
+            }
+            return cloned;
+        }
     }
+    std::cout << "[MateriaSource] Cannot create Materia of type: " << type << std::endl;
     return NULL;
 }
