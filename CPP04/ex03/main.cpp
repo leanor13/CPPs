@@ -39,7 +39,9 @@ int main() {
         me->use(0, *bob);
         me->use(1, *bob);
 
-        std::cout << "\n--- Test Complete for Block 1 (Memory Auto-Freed) ---" << std::endl;
+		delete bob;
+		delete me;
+		delete src;
     }
 
     // --- BLOCK 2: Edge case tests ---
@@ -88,7 +90,9 @@ int main() {
         // // Using an invalid index
         me->use(4, *bob);
 
-        std::cout << "\n--- Test Complete for Block 2 (Memory Auto-Freed) ---" << std::endl;
+        delete bob;
+        delete me;
+        delete src;
     }
 
     return 0;
