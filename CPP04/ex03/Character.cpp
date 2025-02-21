@@ -35,10 +35,6 @@ std::string const & Character::getName() const {
 }
 
 void Character::equip(AMateria* m) {
-	if (!m) {
-        std::cout << "[Character] Cannot equip NULL" << std::endl;
-        return;
-    }
 	std::cout << "[Character] Equipped " << m->getType() << std::endl;
     for (int i = 0; i < 4; i++) {
         if (!inventory[i]) {
