@@ -75,15 +75,15 @@ int main() {
 
         std::cout << "\n--- Test 7: Unequipping and Deleting Materia ---" << std::endl;
         me->unequip(0);
-        delete tmp[0];
+        //delete tmp[0];
 
         std::cout << "\n--- Test 8: Using Materia from Empty Slots ---" << std::endl;
         ICharacter* bob = new Character("bob");
 
         for (int i = 0; i < 4; i++)
-            me->use(i, *bob);
+             me->use(i, *bob);
 
-        // Using an invalid index
+        // // Using an invalid index
         me->use(4, *bob);
 
         std::cout << "\n--- Test Complete for Block 2 (Memory Auto-Freed) ---" << std::endl;
