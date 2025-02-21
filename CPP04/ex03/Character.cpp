@@ -19,7 +19,7 @@ Character& Character::operator=(const Character& other) {
         name = other.name;
 
         for (int i = 0; i < 4; i++) {
-            AMateria* newMateria = other.inventory[i] ? other.inventory[i]->clone() : nullptr;
+            AMateria* newMateria = other.inventory[i] ? other.inventory[i]->clone() : NULL;
             delete inventory[i];
             inventory[i] = newMateria;
         }
