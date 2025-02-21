@@ -74,8 +74,10 @@ int main() {
         }
 
         std::cout << "\n--- Test 7: Unequipping and Deleting Materia ---" << std::endl;
-        me->unequip(0);
-        delete tmp[0];
+        AMateria* removedMateria = tmp[0];
+		me->unequip(0);
+		delete removedMateria; 
+        //delete tmp[0];
 
         std::cout << "\n--- Test 8: Using Materia from Empty Slots ---" << std::endl;
         ICharacter* bob = new Character("bob");

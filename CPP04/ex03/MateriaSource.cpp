@@ -30,14 +30,23 @@ MateriaSource::~MateriaSource() {
 }
 
 void MateriaSource::learnMateria(AMateria* m) {
-	std::cout << "[MateriaSource] Learned new Materia: " << m->getType() << std::endl;
+    if (!m) {
+        std::cout << "[MateriaSource] Cannot learn NULL Materia" << std::endl;
+        return;
+    }
+
     for (int i = 0; i < 4; i++) {
         if (!learned[i]) {
             learned[i] = m;
+            std::cout << "[MateriaSource] Learned new Materia: " << m->getType() << std::endl;
             return;
         }
     }
+
+    std::cout << "[MateriaSource] Cannot learn more than 4 Materia! Deleting extra." << std::endl;
+    delete m;
 }
+
 
 AMateria* MateriaSource::createMateria(std::string const & type) {
     for (int i = 0; i < 4; i++) {
