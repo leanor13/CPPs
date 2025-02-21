@@ -68,4 +68,6 @@ void Character::unequip(int idx) {
 void Character::use(int idx, ICharacter& target) {
     if (idx >= 0 && idx < 4 && inventory[idx])
         inventory[idx]->use(target);
+	else
+		std::cout << "Invalid inventory usage on slot: " << idx << std::endl;
 }
