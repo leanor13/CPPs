@@ -18,18 +18,19 @@ int main() {
     ICharacter* me = new Character("me");
 
     AMateria* tmp;
-	tmp = src->createMateria("ice");
+    tmp = src->createMateria("ice");
     if (tmp) {
-        if (!me->equip(tmp)) {
-        delete tmp;
-        }
-    }  
-    tmp = src->createMateria("cure");
-    if (tmp) {
-        if (!me->equip(tmp)) {
-            delete tmp;
-        }
-    }
+		me->equip(tmp);
+	} else {
+		delete tmp;
+	}
+    
+	tmp = src->createMateria("cure");
+	if (tmp) {
+		me->equip(tmp);
+	} else {
+		delete tmp;
+	}
 
     std::cout << "\n--- Test 3: Using Materia ---" << std::endl;
     ICharacter* bob = new Character("bob");
