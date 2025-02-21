@@ -34,20 +34,21 @@ std::string const & Character::getName() const {
     return name;
 }
 
-void Character::equip(AMateria* m) {
+bool Character::equip(AMateria* m) {
 	if (!m) {
         std::cout << "[Character] Cannot equip NULL" << std::endl;
-        return;
+        return false;
     }
 	std::cout << "[Character] Equipped " << m->getType() << std::endl;
     for (int i = 0; i < 4; i++) {
         if (!inventory[i]) {
             inventory[i] = m;
-            return;
+            return true;
         }
     }
 	std::cout << "[Character] Cannot equip " << m->getType() << ", inventory full!" << std::endl;
 	delete m;
+	return false;
 }
 
 void Character::unequip(int idx) {
