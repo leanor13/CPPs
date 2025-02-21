@@ -19,14 +19,23 @@ int main() {
 
     AMateria* tmp;
     tmp = src->createMateria("ice");
-    me->equip(tmp);
-    tmp = src->createMateria("cure");
-    me->equip(tmp);
+    if (tmp) {
+		me->equip(tmp);
+	} else {
+		delete tmp;
+	}
+    
+	tmp = src->createMateria("cure");
+	if (tmp) {
+		me->equip(tmp);
+	} else {
+		delete tmp;
+	}
 
     std::cout << "\n--- Test 3: Using Materia ---" << std::endl;
     ICharacter* bob = new Character("bob");
-    me->use(0, *bob); // Should shoot an ice bolt at bob
-    me->use(1, *bob); // Should heal bob
+    me->use(0, *bob);
+    me->use(1, *bob);
 
     std::cout << "\n--- Test 4: Unequipping and Re-equipping Materia ---" << std::endl;
     me->unequip(0);
