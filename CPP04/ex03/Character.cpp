@@ -35,6 +35,10 @@ std::string const & Character::getName() const {
 }
 
 void Character::equip(AMateria* m) {
+	if (!m) {
+        std::cout << "[Character] Cannot equip NULL" << std::endl;
+        return;
+    }
 	std::cout << "[Character] Equipped " << m->getType() << std::endl;
     for (int i = 0; i < 4; i++) {
         if (!inventory[i]) {
@@ -43,12 +47,15 @@ void Character::equip(AMateria* m) {
         }
     }
 	std::cout << "[Character] Cannot equip " << m->getType() << ", inventory full!" << std::endl;
+	delete m;
 }
 
 void Character::unequip(int idx) {
-	std::cout << "[Character] Unequipped slot " << idx << std::endl;
-    if (idx >= 0 && idx < 4)
+    if (idx >= 0 && idx < 4) {
+		delete inventory[idx];
         inventory[idx] = NULL;
+		std::cout << "[Character] Unequipped slot " << idx << std::endl;
+	}
 }
 
 void Character::use(int idx, ICharacter& target) {
