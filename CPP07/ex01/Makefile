@@ -1,11 +1,11 @@
-NAME = swap_test
+NAME = iter_test
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRC = main.cpp
 OBJ = $(SRC:.cpp=.o)
-HEADERS = whatever.hpp
+HEADERS = iter.hpp
 
 all: $(NAME)
 
@@ -24,4 +24,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
