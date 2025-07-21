@@ -40,5 +40,34 @@ int main() {
   std::cout << "Big shortest: " << big.shortestSpan() << std::endl;
   std::cout << "Big longest: " << big.longestSpan() << std::endl;
 
+  // Corner case: addRange превышает размер
+  try {
+    Span sp3(3);
+    std::vector<int> v2;
+    v2.push_back(1);
+    v2.push_back(2);
+    v2.push_back(3);
+    v2.push_back(4);
+    sp3.addRange(v2.begin(), v2.end());
+  } catch (const std::exception &e) {
+    std::cout << "Exception: " << e.what() << std::endl;
+  }
+
+  // Corner case: отрицательные числа
+  Span sp4(3);
+  sp4.addNumber(-10);
+  sp4.addNumber(0);
+  sp4.addNumber(10);
+  std::cout << "Negative shortest: " << sp4.shortestSpan() << std::endl;
+  std::cout << "Negative longest: " << sp4.longestSpan() << std::endl;
+
+  // Corner case: одинаковые числа
+  Span sp5(3);
+  sp5.addNumber(7);
+  sp5.addNumber(7);
+  sp5.addNumber(7);
+  std::cout << "Same shortest: " << sp5.shortestSpan() << std::endl;
+  std::cout << "Same longest: " << sp5.longestSpan() << std::endl;
+
   return 0;
 }

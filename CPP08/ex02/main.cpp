@@ -44,5 +44,34 @@ int main() {
     std::cout << *lit << std::endl;
     ++lit;
   }
+
+  // Corner case: пустой MutantStack
+  MutantStack<int> emptyStack;
+  std::cout << "Empty stack iteration:" << std::endl;
+  for (MutantStack<int>::iterator eit = emptyStack.begin();
+       eit != emptyStack.end(); ++eit)
+    std::cout << *eit << std::endl;
+
+  // Corner case: копирование и присваивание
+  MutantStack<int> copyStack = mstack;
+  MutantStack<int> assignStack;
+  assignStack = mstack;
+  std::cout << "Copy stack iteration:" << std::endl;
+  for (MutantStack<int>::iterator cit = copyStack.begin();
+       cit != copyStack.end(); ++cit)
+    std::cout << *cit << std::endl;
+  std::cout << "Assign stack iteration:" << std::endl;
+  for (MutantStack<int>::iterator ait = assignStack.begin();
+       ait != assignStack.end(); ++ait)
+    std::cout << *ait << std::endl;
+
+  // Corner case: другой тип (std::string)
+  MutantStack<std::string> strStack;
+  strStack.push("hello");
+  strStack.push("world");
+  std::cout << "String stack iteration:" << std::endl;
+  for (MutantStack<std::string>::iterator sit = strStack.begin();
+       sit != strStack.end(); ++sit)
+    std::cout << *sit << std::endl;
   return 0;
 }
