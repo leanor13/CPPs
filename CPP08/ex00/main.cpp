@@ -25,7 +25,7 @@ int main() {
     std::cout << e.what() << std::endl;
   }
 
-  // Corner case: поиск в пустом контейнере
+  // Corner case: searching in an empty vector
   std::vector<int> empty;
   try {
     std::cout << "Found: " << easyfind(empty, 1) << std::endl;
