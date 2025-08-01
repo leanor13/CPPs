@@ -24,7 +24,7 @@ int main() {
   }
   std::stack<int> s(mstack);
 
-  // Сравнение с list
+  // Comparison to list
   std::cout << "--- std::list ---" << std::endl;
   std::list<int> lst;
   lst.push_back(5);
@@ -45,14 +45,14 @@ int main() {
     ++lit;
   }
 
-  // Corner case: пустой MutantStack
+  // Corner case: empty MutantStack
   MutantStack<int> emptyStack;
   std::cout << "Empty stack iteration:" << std::endl;
   for (MutantStack<int>::iterator eit = emptyStack.begin();
        eit != emptyStack.end(); ++eit)
     std::cout << *eit << std::endl;
 
-  // Corner case: копирование и присваивание
+  // Corner case: copying and assignment
   MutantStack<int> copyStack = mstack;
   MutantStack<int> assignStack;
   assignStack = mstack;
@@ -65,7 +65,7 @@ int main() {
        ait != assignStack.end(); ++ait)
     std::cout << *ait << std::endl;
 
-  // Corner case: другой тип (std::string)
+  // Corner case: another type (std::string)
   MutantStack<std::string> strStack;
   strStack.push("hello");
   strStack.push("world");

@@ -3,7 +3,7 @@
 
 #include <stack>
 
-// Класс MutantStack наследует std::stack и делает его итерируемым
+// Class MutantStack inherits from std::stack and makes it iterable
 
 template <typename T> class MutantStack : public std::stack<T> {
 public:

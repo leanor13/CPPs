@@ -5,7 +5,7 @@
 #include <vector>
 
 int main() {
-  // Пример из задания
+  // From the subject
   Span sp = Span(5);
   sp.addNumber(6);
   sp.addNumber(3);
@@ -15,14 +15,14 @@ int main() {
   std::cout << sp.shortestSpan() << std::endl;
   std::cout << sp.longestSpan() << std::endl;
 
-  // Проверка исключения при переполнении
+  // checking overflow
   try {
     sp.addNumber(42);
   } catch (const std::exception &e) {
     std::cout << "Exception: " << e.what() << std::endl;
   }
 
-  // Проверка исключения при недостатке чисел
+  // checking not enough numbers for span
   try {
     Span sp2(1);
     sp2.addNumber(1);
@@ -31,7 +31,7 @@ int main() {
     std::cout << "Exception: " << e.what() << std::endl;
   }
 
-  // Тест с большим количеством чисел и addRange
+  // Testing with a large number of elements and addRange
   Span big(10000);
   std::vector<int> v;
   for (int i = 0; i < 10000; ++i)
@@ -40,7 +40,7 @@ int main() {
   std::cout << "Big shortest: " << big.shortestSpan() << std::endl;
   std::cout << "Big longest: " << big.longestSpan() << std::endl;
 
-  // Corner case: addRange превышает размер
+  // Corner case: addRange exceeds size
   try {
     Span sp3(3);
     std::vector<int> v2;
@@ -53,7 +53,7 @@ int main() {
     std::cout << "Exception: " << e.what() << std::endl;
   }
 
-  // Corner case: отрицательные числа
+  // Corner case: negative numbers
   Span sp4(3);
   sp4.addNumber(-10);
   sp4.addNumber(0);
@@ -61,7 +61,7 @@ int main() {
   std::cout << "Negative shortest: " << sp4.shortestSpan() << std::endl;
   std::cout << "Negative longest: " << sp4.longestSpan() << std::endl;
 
-  // Corner case: одинаковые числа
+  // Corner case: same numbers
   Span sp5(3);
   sp5.addNumber(7);
   sp5.addNumber(7);
