@@ -12,7 +12,7 @@ public:
     BitcoinExchange();
     ~BitcoinExchange();
 
-    void loadDatabase(const std::string& filename);
+    void loadRates(const std::string& filename);
     float getRateForDate(const std::string& date) const;
 };
 

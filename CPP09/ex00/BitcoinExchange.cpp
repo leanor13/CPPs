@@ -7,7 +7,7 @@
 BitcoinExchange::BitcoinExchange() {}
 BitcoinExchange::~BitcoinExchange() {}
 
-void BitcoinExchange::loadDatabase(const std::string& filename) {
+void BitcoinExchange::loadRates(const std::string& filename) {
     std::ifstream file(filename.c_str());
     if (!file)
         throw std::runtime_error("Error: could not open database.");

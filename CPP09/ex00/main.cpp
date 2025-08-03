@@ -4,11 +4,36 @@
 #include <sstream>
 #include <cstdlib>
 #include <string>
-#include <regex>
 
 bool isValidDate(const std::string& date) {
-    return std::regex_match(date, std::regex("\\d{4}-\\d{2}-\\d{2}"));
+    if (date.length() != 10)
+        return false;
+    if (date[4] != '-' || date[7] != '-')
+        return false;
+
+    std::string yearStr = date.substr(0, 4);
+    std::string monthStr = date.substr(5, 2);
+    std::string dayStr = date.substr(8, 2);
+
+    for (size_t i = 0; i < yearStr.size(); ++i)
+        if (!isdigit(yearStr[i])) return false;
+    for (size_t i = 0; i < monthStr.size(); ++i)
+        if (!isdigit(monthStr[i])) return false;
+    for (size_t i = 0; i < dayStr.size(); ++i)
+        if (!isdigit(dayStr[i])) return false;
+
+    //int year = atoi(yearStr.c_str());
+    int month = atoi(monthStr.c_str());
+    int day = atoi(dayStr.c_str());
+
+    if (month < 1 || month > 12)
+        return false;
+    if (day < 1 || day > 31)
+        return false;
+
+    return true;
 }
+
 
 bool isValidValue(const std::string& valueStr, float& value) {
     std::istringstream ss(valueStr);
@@ -30,7 +55,7 @@ bool isValidValue(const std::string& valueStr, float& value) {
 
 int main(int argc, char **argv) {
     if (argc != 2) {
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cerr << "Error. Usage: ./btc <input_file>" << std::endl;
         return 1;
     }
 
@@ -44,7 +69,7 @@ int main(int argc, char **argv) {
 
     std::ifstream input(argv[1]);
     if (!input.is_open()) {
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cerr << "Error: could not open file. Check provided path" << std::endl;
         return 1;
     }
 
